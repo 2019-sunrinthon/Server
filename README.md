@@ -186,3 +186,57 @@ StatusCode: 400
   "success": true
 }
 ```
+
+## POST /v1/todo
+
+todo 값을 저장합니다. `x-access-token` 헤더가 필요합니다.
+
+요청
+
+```json
+{
+  "title": "나는 돈이 많다"
+  "list": ["나는 1억 이상의 차가 있다.", "나는 통장잔고가 1.5억 이상 있다.", "나는 1000만원 이상의 시계가 있다.", "나는 20억 이상의 집에 살고 있다.", "나는 일을 안해도 평생 놀 수 있다."]
+}
+```
+
+응답
+
+```json
+{
+  "success": true,
+  "id": "dsgsdgdsg"
+}
+```
+
+## GET /v1/todo
+
+todo 값을 가져옵니다. `x-access-token` 헤더가 필요합니다.
+
+응답
+
+```json
+{
+  "success": true,
+  "todos": {
+    "title": "나는 돈이 많다",
+    "list": [{"todo": "나는 1억 이상의 차가 있다.", "completed": true}, ...]
+  }
+}
+```
+
+## PUT /v1/todo/:idx/toggle
+
+완료를 toggle. (idx는 배열의 index 값 예: 0, 1, 2...) `x-access-token` 헤더가 필요합니다.
+
+응답
+
+```json
+{
+  "success": true,
+  "todos": {
+    "title": "나는 돈이 많다",
+    "list": [{"todo": "나는 1억 이상의 차가 있다.", "completed": true}, ...]
+  }
+}
+```

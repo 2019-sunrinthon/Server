@@ -5,7 +5,7 @@ const schema = new Schema({
     type: String,
     required: true
   },
-  lists: [
+  list: [
     {
       todo: String,
       completed: {
