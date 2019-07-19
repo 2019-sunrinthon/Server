@@ -42,7 +42,7 @@ app.use(async (ctx, next) => {
       error_message: message,
       status_code: statusCode
     };
-    console.log(ctx.body);
+    console.error(ctx.body);
   }
 });
 routes.forEach(router => {
