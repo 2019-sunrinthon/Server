@@ -23,7 +23,7 @@ router.post("/:article/comment", authMiddleware, async ctx => {
   ctx.status = 201;
   ctx.body = {
     contents,
-    id: comment.id
+    id: comment._id
   };
 });
 router.get("/:id/comment", async ctx => {

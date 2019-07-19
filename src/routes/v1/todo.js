@@ -11,5 +11,6 @@ router.post("/", async ctx => {
     title,
     lists
   });
-  c;
+  await todo.save();
+  ctx.body = { id: todo._id };
 });
