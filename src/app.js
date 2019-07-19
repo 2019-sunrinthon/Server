@@ -9,10 +9,10 @@ import { code, getError, throwError } from "./lib/errors";
 import "./lib/connect";
 
 export const app = new Koa();
+app.use(logger());
 
 app.use(cors());
 app.use(bodyParser());
-app.use(logger());
 
 app.use(async (ctx, next) => {
   try {
