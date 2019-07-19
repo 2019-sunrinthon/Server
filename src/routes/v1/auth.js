@@ -9,6 +9,7 @@ router.post("/token", async ctx => {
   const { provider } = ctx.request.body;
   throwNoRequiredItems(ctx.throw, ctx.request.body, "provider");
 
+  console.log(ctx.request.body);
   if (provider !== "local" && provider !== "kakao") {
     return ctx.throw(...throwError(code.NOT_DEFIND_ENUM));
   }
@@ -17,6 +18,7 @@ router.post("/token", async ctx => {
     const { email, password } = ctx.request.body;
 
     const user = await User.findOne({ email });
+
     if (!user || !user.verifyPassword(password)) {
       return ctx.throw(...throwError(code.USER_NOT_EXIST));
     }
