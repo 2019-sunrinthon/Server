@@ -189,7 +189,7 @@ StatusCode: 400
 
 ## POST /v1/todo
 
-todo 값을 저장합니다. `x-access-token` 헤더가 필요합니다.
+todo 값을 저장합니다. `x-access-token` 헤더가 필요합니다. `id` 값은 나중에 on/off를 조절하기 위해 **반드시** 필요합니다.
 
 요청
 
@@ -219,15 +219,16 @@ todo 값을 가져옵니다. `x-access-token` 헤더가 필요합니다.
 {
   "success": true,
   "todos": {
+    "_id": "id",
     "title": "나는 돈이 많다",
     "list": [{"todo": "나는 1억 이상의 차가 있다.", "completed": true}, ...]
   }
 }
 ```
 
-## PUT /v1/todo/:idx/toggle
+## PUT /v1/todo/:id/:idx/toggle
 
-완료를 toggle. (idx는 배열의 index 값 예: 0, 1, 2...) `x-access-token` 헤더가 필요합니다.
+완료를 toggle. id는 만들어질 때 반환한 id. (idx는 배열의 index 값 예: 0, 1, 2...) `x-access-token` 헤더가 필요합니다.
 
 응답
 
@@ -235,6 +236,7 @@ todo 값을 가져옵니다. `x-access-token` 헤더가 필요합니다.
 {
   "success": true,
   "todos": {
+    "_id": "id",
     "title": "나는 돈이 많다",
     "list": [{"todo": "나는 1억 이상의 차가 있다.", "completed": true}, ...]
   }

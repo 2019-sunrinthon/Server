@@ -26,10 +26,10 @@ router.get("/", authMiddleware, async ctx => {
   ctx.body = { todos: data };
 });
 
-router.put("/:idx/toggle", authMiddleware, async ctx => {
-  const { idx } = ctx.params;
+router.put("/:id/:idx/toggle", authMiddleware, async ctx => {
+  const { id, idx } = ctx.params;
   const { _id } = ctx.state.user;
-  let data = await Todo.find({ by: _id });
+  let data = await Todo.findOne({ _id: id, by: _id });
   data.list[idx].completed = !data.completed;
   await Todo.update({ _id: data._id }, data);
   ctx.body = { todos: data };
