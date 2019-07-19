@@ -85,3 +85,47 @@ StatusCode: 400
   "token": "Token...."
 }
 ```
+
+## POST /v1/article
+
+글을 씁니다. `x-access-token` 헤더에 토큰을 넣어주세요.
+
+요청 예시
+
+```json
+{
+  "title": "글의 제목",
+  "contents": "글의 내용"
+}
+```
+
+성공
+
+```json
+{
+  "success": true,
+  "id": "글의 아이디"
+}
+```
+
+# GET /v1/article
+
+글들을 모두 받아옵니다. `x-access-token`에 토큰을 넣어주세요.
+
+성공
+
+```json
+[
+  {
+    "_id": "4ds8q3rf0dsf",
+    "title": "Hello World!",
+    "contents": "글",
+    "by": {
+      "_id": "352dsgsfg234",
+      "age": 30
+    },
+    "__v": 0
+  }
+  //...
+]
+```

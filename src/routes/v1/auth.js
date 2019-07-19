@@ -20,10 +20,11 @@ router.post("/token", async ctx => {
     if (!user || !user.verifyPassword(password)) {
       return ctx.throw(...throwError(code.NOT_FOUND));
     }
-    const { username, age, phoneNumber, name } = user;
+    const { username, age, phoneNumber, name, _id } = user;
     ctx.status = 201;
     ctx.body = {
       token: makeToken({
+        _id,
         provider: "local",
         username,
         age,

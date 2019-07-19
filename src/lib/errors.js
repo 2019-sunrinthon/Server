@@ -3,7 +3,8 @@ export const code = {
   SERVER_ERROR: "SERVER_ERROR",
   NO_REQUIRED_ITEMS: "NO_REQUIRED_ITEMS",
   UNIQUE_ERROR: "UNIQUE_ERROR",
-  NOT_DEFIND_ENUM: "NOT_DEFIND_ENUM"
+  NOT_DEFIND_ENUM: "NOT_DEFIND_ENUM",
+  INVAILD_TOKEN: "INVAILD_TOKEN"
 };
 
 const error = {
@@ -26,6 +27,10 @@ const error = {
   NOT_DEFIND_ENUM: {
     statusCode: 400,
     messasge: "정의된 값 중 하나가 아닙니다."
+  },
+  INVAILD_TOKEN: {
+    statusCode: 403,
+    message: "유효한 토큰이 아닙니다."
   }
 };
 
