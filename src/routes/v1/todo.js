@@ -34,3 +34,5 @@ router.put("/:idx/toggle", authMiddleware, async ctx => {
   await Todo.update({ _id: data._id }, data);
   ctx.body = { todos: data };
 });
+
+export default router;
