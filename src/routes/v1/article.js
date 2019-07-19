@@ -21,25 +21,12 @@ router.post("/", authMiddleware, async ctx => {
 });
 
 router.get("/", async ctx => {
-  const age = parseInt(ctx.query.age, 10);
-  const nAge = Math.floor(age / 10) * 10;
-
-  let data = await Article.find()
-    .populate({
-      path: "by",
-      select: "age",
-      match: { age: { $gte: nAge, $lt: nAge + 10 } }
-    })
-    .exec();
-  data = data.filter(d => {
-    return d.by;
-  });
-  data = data.sort(() => {
-    return Math.floor(Math.random() * 3) - 1;
-  });
+  let data = await Article.find().populate("by", "username");
   ctx.body = {
     articles: data
   };
+
+  console.log(data);
 });
 
 router.get("/:id", async ctx => {

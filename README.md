@@ -132,7 +132,7 @@ StatusCode: 400
       "contents": "글",
       "by": {
         "_id": "352dsgsfg234",
-        "age": 30
+        "username": "닉네임"
       },
       "__v": 0
     }
