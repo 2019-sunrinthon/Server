@@ -1,23 +1,29 @@
-import passport from "passport";
-import { Strategy as LocalStrategy } from "passport-local";
+import jwt from "jsonwebtoken";
 
-import User from "../models/User";
+const secret = process.env.JWT_TOKEN || "awesome_token"; // DO NOT USE THIS SECRET KEY!!
 
-passport.use(
-  new LocalStrategy((username, password, done) => {
-    (async () => {
-      const user = await User.findOne({ username, password }, [
-        "username",
-        "email",
-        "phoneNumber",
-        "age",
-        "name"
-      ]);
-      if (!user) return false;
-      if (!user.verifyPassword(password)) return false;
-      return user;
-    })().then(user => {
-      done(null, user);
-    });
-  })
-);
+export function makeToken({
+  provider = "local",
+  name,
+  email,
+  phoneNumber,
+  username,
+  age
+}) {
+  return jwt.sign(
+    {
+      provider,
+      name,
+      email,
+      phoneNumber,
+      username,
+      age
+    },
+    secret,
+    { expiresIn: "5d" }
+  );
+}
+
+export function verifyToken(token) {
+  return jwt.verify(token, secret);
+}

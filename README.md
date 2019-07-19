@@ -21,6 +21,7 @@
 | SERVER_ERROR      | 서버에서 에러가 발생했습니다. 500 스펙과 동일합니다.            |
 | NO_REQUIRED_ITEMS | 필수인 항목이 없을 때 발생하는 오류입니다.                      |
 | UNIQUE_ERROR      | 유니크한 항목에 이미 존재하는 것을 넣을 때 발생하는 오류입니다. |
+| NOT_DEFIND_ENUM   | 정해진 값 중 하나가 아닌 경우 발생합니다.                       |
 
 # API
 
@@ -55,9 +56,32 @@ StatusCode: 400
 
 ```json
 {
-    "success": false,
-    "error_type: "NO_REQUIRED_ITEMS",
-    "error_message": "필수인 정보가 없습니다.",
-    "status_code": 400
+  "success": false,
+  "error_type": "NO_REQUIRED_ITEMS",
+  "error_message": "필수인 정보가 없습니다.",
+  "status_code": 400
+}
+```
+
+## POST /v1/auth/token
+
+토큰을 발급받습니다. 토큰의 유효 기간은 5일입니다.
+
+요청 예시
+
+```json
+{
+  "provider": "local",
+  "username": "test1",
+  "password": "password"
+}
+```
+
+성공
+
+```json
+{
+  "success": true,
+  "token": "Token...."
 }
 ```

@@ -2,13 +2,14 @@ export const code = {
   NOT_FOUND: "NOT_FOUND",
   SERVER_ERROR: "SERVER_ERROR",
   NO_REQUIRED_ITEMS: "NO_REQUIRED_ITEMS",
-  UNIQUE_ERROR: "UNIQUE_ERROR"
+  UNIQUE_ERROR: "UNIQUE_ERROR",
+  NOT_DEFIND_ENUM: "NOT_DEFIND_ENUM"
 };
 
 const error = {
   NOT_FOUND: {
     statusCode: 404,
-    message: "페이지를 찾을 수 없습니다."
+    message: "리소스를 찾을 수 없습니다."
   },
   SERVER_ERROR: {
     statusCode: 500,
@@ -21,6 +22,10 @@ const error = {
   UNIQUE_ERROR: {
     statusCode: 400,
     message: "서버에 겹치는 항목이 있습니다."
+  },
+  NOT_DEFIND_ENUM: {
+    statusCode: 400,
+    messasge: "정의된 값 중 하나가 아닙니다."
   }
 };
 

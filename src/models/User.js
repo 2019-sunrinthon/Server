@@ -33,10 +33,24 @@ const schema = new Schema({
     required: true
   }
 });
-schema.methods.verifyPassword = pw => {
+schema.methods.verifyPassword = function(pw) {
   if (password(pw) === this.password) {
     return true;
   }
   return false;
 };
-export default model("User", schema);
+
+const User = model("User", schema);
+if (process.env.NODE_ENV === "test") {
+  new User({
+    username: "test1",
+    password: "password",
+    email: "example@example.com",
+    phoneNumber: "010-1234-5678",
+    name: "홍길동",
+    age: 20
+  })
+    .save()
+    .catch(e => {});
+}
+export default User;
