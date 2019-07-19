@@ -5,7 +5,7 @@ import { authMiddleware } from "../../lib/auth";
 const router = new Router();
 
 router.post("/", authMiddleware, async ctx => {
-  throwNoRequiredItems(ctx.throw, ctx.request.body, "title", "lists");
+  throwNoRequiredItems(ctx.throw, ctx.request.body, "title", "list");
   const { _id } = ctx.state.user;
   const { title, list } = ctx.request.body;
   const nlist = list.map(el => {
