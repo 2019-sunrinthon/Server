@@ -14,19 +14,18 @@ router.post("/token", async ctx => {
   }
 
   if (provider === "local") {
-    const { username, password } = ctx.request.body;
+    const { email, password } = ctx.request.body;
 
-    const user = await User.findOne({ username, password });
+    const user = await User.findOne({ email });
     if (!user || !user.verifyPassword(password)) {
       return ctx.throw(...throwError(code.NOT_FOUND));
     }
-    const { email, age, phoneNumber, name } = user;
+    const { username, age, phoneNumber, name } = user;
     ctx.status = 201;
     ctx.body = {
       token: makeToken({
         provider: "local",
         username,
-        email,
         age,
         phoneNumber,
         name

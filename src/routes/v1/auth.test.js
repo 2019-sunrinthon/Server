@@ -21,7 +21,7 @@ describe("/v1/token", () => {
         .post("/v1/auth/token")
         .send({
           provider: "local",
-          username: "test1",
+          email: "example@example.com",
           password: "password"
         });
 

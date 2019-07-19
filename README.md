@@ -72,7 +72,7 @@ StatusCode: 400
 ```json
 {
   "provider": "local",
-  "username": "test1",
+  "email": "test1",
   "password": "password"
 }
 ```
