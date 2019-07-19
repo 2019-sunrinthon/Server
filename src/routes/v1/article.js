@@ -25,8 +25,6 @@ router.get("/", async ctx => {
   ctx.body = {
     articles: data
   };
-
-  console.log(data);
 });
 
 router.get("/:id", async ctx => {
