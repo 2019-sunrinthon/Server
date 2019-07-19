@@ -90,6 +90,7 @@ StatusCode: 400
   "username": "username",
   "age": 10,
   "phoneNumber": "010-1234-5678",
+  "email": "email@email.com",
   "name": "Name"
 }
 ```
