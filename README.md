@@ -47,6 +47,7 @@ StatusCode: 201
 ```json
 {
   "success": true
+  // 유저 정보 반환
 }
 ```
 

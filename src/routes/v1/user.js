@@ -47,7 +47,13 @@ router.post("/", async ctx => {
     }
   }
   ctx.status = 201;
-  ctx.body = {};
+  ctx.body = {
+    username,
+    email,
+    name,
+    phoneNumber,
+    age
+  };
 });
 
 export default router;
