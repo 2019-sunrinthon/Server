@@ -1,12 +1,16 @@
 import Koa from "koa";
 import cors from "@koa/cors";
+import bodyParser from "koa-bodyparser";
 
 import routes from "./routes";
 import { code, getError, throwError } from "./lib/errors";
 
+import "./lib/connect";
+
 export const app = new Koa();
 
 app.use(cors());
+app.use(bodyParser());
 
 app.use(async (ctx, next) => {
   try {
@@ -15,26 +19,25 @@ app.use(async (ctx, next) => {
     if (status === 404) {
       ctx.throw(...throwError(code.NOT_FOUND));
     }
+    if (status >= 200 && status < 300 && typeof ctx.body === "object") {
+      ctx.body.success = true;
+    }
   } catch (e) {
     let errorCode = code.SERVER_ERROR;
 
     if (e.errorCode) {
       errorCode = e.errorCode;
+    } else {
+      console.error(e);
     }
 
     const { statusCode, message } = getError(errorCode);
-    if (!ctx.status) {
-      if (statusCode) {
-        ctx.status(statusCode);
-      } else {
-        ctx.status(500);
-      }
-    }
 
+    ctx.status = statusCode || 500;
     ctx.body = {
       success: false,
       error_type: errorCode,
-      message,
+      error_message: message,
       status_code: statusCode
     };
   }

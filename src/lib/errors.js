@@ -1,6 +1,8 @@
 export const code = {
   NOT_FOUND: "NOT_FOUND",
-  SERVER_ERROR: "SERVER_ERROR"
+  SERVER_ERROR: "SERVER_ERROR",
+  NO_REQUIRED_ITEMS: "NO_REQUIRED_ITEMS",
+  UNIQUE_ERROR: "UNIQUE_ERROR"
 };
 
 const error = {
@@ -11,6 +13,14 @@ const error = {
   SERVER_ERROR: {
     statusCode: 500,
     message: "서버에서 오류가 발생했습니다. 다시 시도해주세요"
+  },
+  NO_REQUIRED_ITEMS: {
+    statusCode: 400,
+    message: "필수인 아이템이 없습니다."
+  },
+  UNIQUE_ERROR: {
+    statusCode: 400,
+    message: "서버에 겹치는 항목이 있습니다."
   }
 };
 
@@ -31,4 +41,16 @@ export function getError(errorCode) {
     message,
     statusCode
   };
+}
+
+export function throwNoRequiredItems(throwFunc, body, ...args) {
+  for (const i of args) {
+    if (!body.hasOwnProperty(i) || !body[i]) {
+      throwFunc(...throwError(code.NO_REQUIRED_ITEMS));
+    }
+  }
+}
+
+export async function isUniqueError(e) {
+  return e.name === "MongoError" && e.code === 11000;
 }
