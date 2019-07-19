@@ -40,7 +40,7 @@ const error = {
   },
   USER_NOT_EXIST: {
     statusCode: 403,
-    message: "아이디가 맞거나 비밀번호가 틀립니다."
+    message: "아이디가 틀리거나 비밀번호가 틀립니다."
   }
 };
 
