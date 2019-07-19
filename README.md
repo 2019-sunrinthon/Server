@@ -109,24 +109,59 @@ StatusCode: 400
 }
 ```
 
-# GET /v1/article
+## GET /v1/article
 
 글들을 모두 받아옵니다. Query `age`에 나이 값을 넣어주세요. (17 등의 수를 넣어도 자동으로 10~19로 인식합니다.)
 
 성공
 
 ```json
-[
-  {
-    "_id": "4ds8q3rf0dsf",
-    "title": "Hello World!",
-    "contents": "글",
-    "by": {
-      "_id": "352dsgsfg234",
-      "age": 30
-    },
-    "__v": 0
-  }
-  //...
-]
+{
+  "success": true,
+  "articles": [
+    {
+      "_id": "4ds8q3rf0dsf",
+      "title": "Hello World!",
+      "contents": "글",
+      "by": {
+        "_id": "352dsgsfg234",
+        "age": 30
+      },
+      "__v": 0
+    }
+    //...
+  ]
+}
+```
+
+## GET /v1/article/:id/comment
+
+:id 글에 있는 댓글들을 가져옵니다.
+
+성공
+
+```json
+{
+  "success": true,
+  "comments": [
+    {
+      "content": "댓글",
+      "by": "Id",
+      "adopted": false
+    }
+  ]
+}
+```
+
+## POST /v1/article/:id/comment
+
+:id 글에 댓글을 답니다. `x-access-token` 헤더가 필요합니다.
+
+성공
+
+```json
+{
+  "success": true,
+  "contents": "댓글 내용"
+}
 ```

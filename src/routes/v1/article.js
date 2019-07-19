@@ -2,8 +2,11 @@ import Router from "koa-router";
 import { authMiddleware } from "../../lib/auth";
 import Article from "../../models/Article";
 import { throwNoRequiredItems } from "../../lib/errors";
+import commentRouter from "./comment";
 
 const router = new Router();
+
+router.use(commentRouter.routes());
 
 router.post("/", authMiddleware, async ctx => {
   const { _id } = ctx.state.user;
@@ -38,4 +41,14 @@ router.get("/", async ctx => {
     articles: data
   };
 });
+
+router.get("/:id", async ctx => {
+  throwNoRequiredItems(ctx.throw, ctx.params, "id");
+  const { id } = ctx.params;
+
+  ctx.body = {
+    article: await Article.findOne({ _id: id })
+  };
+});
+
 export default router;

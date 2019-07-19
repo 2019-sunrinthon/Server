@@ -8,6 +8,7 @@ describe("/v1/article", () => {
         .post("/v1/article")
         .set("x-access-token", token)
         .send({ title: "Hello Test!", contents: "Article" });
+      console.log(body);
       expect(status).toBe(201);
       expect(body.success).toBe(true);
     });

@@ -10,4 +10,5 @@ const router = new Router({
 router.use("/user", userRouter.routes());
 router.use("/auth", authRouter.routes());
 router.use("/article", articleRouter.routes());
+
 export default router;
