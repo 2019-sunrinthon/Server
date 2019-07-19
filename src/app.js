@@ -1,5 +1,6 @@
 import Koa from "koa";
 import cors from "@koa/cors";
+import logger from "koa-logger";
 import bodyParser from "koa-bodyparser";
 
 import routes from "./routes";
@@ -11,6 +12,7 @@ export const app = new Koa();
 
 app.use(cors());
 app.use(bodyParser());
+app.use(logger());
 
 app.use(async (ctx, next) => {
   try {

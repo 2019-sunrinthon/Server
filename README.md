@@ -48,7 +48,7 @@ StatusCode: 201
 {
   "success": true,
   "username": "username",
-  "email": "jeekc0308@gmail.com",
+  "email": "mail@gmail.com",
   "phoneNumber": "010-1234-5678",
   "age": "13"
 }
@@ -87,10 +87,10 @@ StatusCode: 400
 {
   "success": true,
   "token": "Token....",
-  username,
-  age,
-  phoneNumber,
-  name
+  "username": "username",
+  "age": 10,
+  "phoneNumber": "010-1234-5678",
+  "name": "Name"
 }
 ```
 
