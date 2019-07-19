@@ -40,6 +40,7 @@ router.post("/", async ctx => {
   try {
     await user.save();
   } catch (e) {
+    console.error(e);
     if (isUniqueError(e)) {
       ctx.throw(...throwError(code.UNIQUE_ERROR));
     } else {
