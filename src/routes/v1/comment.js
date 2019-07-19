@@ -1,6 +1,6 @@
 import Router from "koa-router";
 import { authMiddleware } from "../../lib/auth";
-import { throwNoRequiredItems } from "../../lib/errors";
+import { throwNoRequiredItems, throwError, code } from "../../lib/errors";
 import Comment from "../../models/Comment";
 const router = new Router();
 
@@ -22,7 +22,8 @@ router.post("/:article/comment", authMiddleware, async ctx => {
 
   ctx.status = 201;
   ctx.body = {
-    contents
+    contents,
+    id: comment.id
   };
 });
 router.get("/:id/comment", async ctx => {
@@ -34,6 +35,25 @@ router.get("/:id/comment", async ctx => {
       article: id
     })
   };
+});
+
+router.put("/:id/comment/:cid/adopt", authMiddleware, async ctx => {
+  throwNoRequiredItems(ctx.throw, ctx.params, "id");
+  const { user } = ctx.state;
+  const { id, cid } = ctx.params;
+
+  const comment = await Comment.findOne({ _id: cid, article: id });
+
+  if (!comment) {
+    return ctx.throw(...throwError(code.NOT_FOUND));
+  }
+  console.log(comment, user);
+  if (comment.by != user._id) {
+    return ctx.throw(...throwError(code.PERMISSION_DENINED));
+  }
+
+  await Comment.updateOne({ _id: cid }, { adopted: true });
+  ctx.body = {};
 });
 
 export default router;

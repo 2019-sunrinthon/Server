@@ -5,7 +5,6 @@
 - [How to use](#How-to-use)
 - [Error Codes](#Error-Codes)
 - [API](#API)
-  - [POST /v1/user](#post-/v1/user)
 
 # How to use
 
@@ -15,13 +14,14 @@
 
 에러 코드는 `error_type` 속성에 들어가 있습니다.
 
-| Error Code        | description                                                     |
-| ----------------- | --------------------------------------------------------------- |
-| NOT_FOUND         | 액션을 찾을 수 없습니다. 404 스펙과 동일합니다.                 |
-| SERVER_ERROR      | 서버에서 에러가 발생했습니다. 500 스펙과 동일합니다.            |
-| NO_REQUIRED_ITEMS | 필수인 항목이 없을 때 발생하는 오류입니다.                      |
-| UNIQUE_ERROR      | 유니크한 항목에 이미 존재하는 것을 넣을 때 발생하는 오류입니다. |
-| NOT_DEFIND_ENUM   | 정해진 값 중 하나가 아닌 경우 발생합니다.                       |
+| Error Code         | description                                                     |
+| ------------------ | --------------------------------------------------------------- |
+| NOT_FOUND          | 액션을 찾을 수 없습니다. 404 스펙과 동일합니다.                 |
+| SERVER_ERROR       | 서버에서 에러가 발생했습니다. 500 스펙과 동일합니다.            |
+| NO_REQUIRED_ITEMS  | 필수인 항목이 없을 때 발생하는 오류입니다.                      |
+| UNIQUE_ERROR       | 유니크한 항목에 이미 존재하는 것을 넣을 때 발생하는 오류입니다. |
+| NOT_DEFIND_ENUM    | 정해진 값 중 하나가 아닌 경우 발생합니다.                       |
+| PERMISSION_DENINED | 권한이 없을 때 발생합니다.                                      |
 
 # API
 
@@ -46,8 +46,11 @@ StatusCode: 201
 
 ```json
 {
-  "success": true
-  // 유저 정보 반환
+  "success": true,
+  "username": "username",
+  "email": "jeekc0308@gmail.com",
+  "phoneNumber": "010-1234-5678",
+  "age": "13"
 }
 ```
 
@@ -162,6 +165,19 @@ StatusCode: 400
 ```json
 {
   "success": true,
-  "contents": "댓글 내용"
+  "contents": "댓글 내용",
+  "id": "댓글 아이디"
+}
+```
+
+## PUT /v1/article/:id/comment/:comment_id/adope
+
+:id 글에 있는 :comment_id 댓글을 채택합니다. `x-access-token`이 필요하고, 유저가 같아야 합니다.
+
+성공
+
+```json
+{
+  "success": true
 }
 ```

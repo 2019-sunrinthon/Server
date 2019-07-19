@@ -4,7 +4,8 @@ export const code = {
   NO_REQUIRED_ITEMS: "NO_REQUIRED_ITEMS",
   UNIQUE_ERROR: "UNIQUE_ERROR",
   NOT_DEFIND_ENUM: "NOT_DEFIND_ENUM",
-  INVAILD_TOKEN: "INVAILD_TOKEN"
+  INVAILD_TOKEN: "INVAILD_TOKEN",
+  PERMISSION_DENINED: "PERMISSION_DENINED"
 };
 
 const error = {
@@ -31,6 +32,10 @@ const error = {
   INVAILD_TOKEN: {
     statusCode: 403,
     message: "유효한 토큰이 아닙니다."
+  },
+  PERMISSION_DENINED: {
+    statusCode: 403,
+    message: "권한이 없습니다."
   }
 };
 
