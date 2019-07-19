@@ -86,7 +86,11 @@ StatusCode: 400
 ```json
 {
   "success": true,
-  "token": "Token...."
+  "token": "Token....",
+  username,
+  age,
+  phoneNumber,
+  name
 }
 ```
 
