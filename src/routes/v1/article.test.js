@@ -8,7 +8,6 @@ describe("/v1/article", () => {
         .post("/v1/article")
         .set("x-access-token", token)
         .send({ title: "Hello Test!", contents: "Article" });
-      console.log(body);
       expect(status).toBe(201);
       expect(body.success).toBe(true);
     });
@@ -17,9 +16,9 @@ describe("/v1/article", () => {
     it("can read articles", async () => {
       const token = await getTestToken();
       const { status, body } = await request(appCallback)
-        .get("/v1/article")
+        .get(`/v1/article?age=10`)
         .set("x-access-token", token);
-
+      expect(status).toBe(200);
       expect(body.articles).not.toBeUndefined();
     });
   });

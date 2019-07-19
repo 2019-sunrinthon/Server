@@ -17,8 +17,8 @@ router.post("/", authMiddleware, async ctx => {
   ctx.body = { id: article._id };
 });
 
-router.get("/", authMiddleware, async ctx => {
-  const { age } = ctx.state.user;
+router.get("/", async ctx => {
+  const age = parseInt(ctx.query.age, 10);
   const nAge = Math.floor(age / 10) * 10;
 
   let data = await Article.find()
