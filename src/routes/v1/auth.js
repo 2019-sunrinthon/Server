@@ -30,7 +30,11 @@ router.post("/token", async ctx => {
         age,
         phoneNumber,
         name
-      })
+      }),
+      username,
+      age,
+      phoneNumber,
+      name
     };
   } else {
     // 나중에
