@@ -39,7 +39,7 @@ const error = {
     message: "권한이 없습니다."
   },
   USER_NOT_EXIST: {
-    statusCode: 404,
+    statusCode: 403,
     message: "아이디가 맞거나 비밀번호가 틀립니다."
   }
 };
