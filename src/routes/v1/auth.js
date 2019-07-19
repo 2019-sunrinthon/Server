@@ -18,7 +18,7 @@ router.post("/token", async ctx => {
 
     const user = await User.findOne({ email });
     if (!user || !user.verifyPassword(password)) {
-      return ctx.throw(...throwError(code.NOT_FOUND));
+      return ctx.throw(...throwError(code.USER_NOT_EXIST));
     }
     const { username, age, phoneNumber, name, _id } = user;
     ctx.status = 201;

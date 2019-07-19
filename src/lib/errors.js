@@ -5,7 +5,8 @@ export const code = {
   UNIQUE_ERROR: "UNIQUE_ERROR",
   NOT_DEFIND_ENUM: "NOT_DEFIND_ENUM",
   INVAILD_TOKEN: "INVAILD_TOKEN",
-  PERMISSION_DENINED: "PERMISSION_DENINED"
+  PERMISSION_DENINED: "PERMISSION_DENINED",
+  USER_NOT_EXIST: "USER_NOT_EXIST"
 };
 
 const error = {
@@ -36,6 +37,10 @@ const error = {
   PERMISSION_DENINED: {
     statusCode: 403,
     message: "권한이 없습니다."
+  },
+  USER_NOT_EXIST: {
+    statusCode: 404,
+    message: "아이디가 맞거나 비밀번호가 틀립니다."
   }
 };
 
