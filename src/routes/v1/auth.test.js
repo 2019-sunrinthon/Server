@@ -8,8 +8,8 @@ describe("/v1/token", () => {
       const payload = {
         provider: "local",
         name: "Kim",
-        email: "jeekc0308@gmail.com",
-        phoneNumber: "010-5460-3367",
+        email: "doyeong@gmail.com",
+        phoneNumber: "010-1234-5678",
         username: "Kim",
         age: 17
       };
